@@ -1,0 +1,74 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+}
+
+apply plugin: 'java'
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  jcenter()
+}
+
+compileJava {
+  options.compilerArgs << '-Apf4j.ignoreExtensionPoint'
+}
+
+dependencies {
+  compileOnly(group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}") {
+    exclude group: "org.slf4j"
+  }
+  annotationProcessor(group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}")
+  compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-secrets', version: "${korkVersion}")
+  compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-api', version: "${korkVersion}")
+  implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.28'
+
+  compileOnly 'org.projectlombok:lombok:+'
+  annotationProcessor 'org.projectlombok:lombok:+'
+
+  testImplementation 'junit:junit:4.12'
+  testImplementation "org.mockito:mockito-core:2.+"
+  testImplementation 'org.springframework:spring-test:5.1.7.RELEASE'
+  testImplementation 'org.springframework.boot:spring-boot-test:2.1.5.RELEASE'
+  testImplementation 'org.springframework.vault:spring-vault-core:2.1.2.RELEASE'
+}
+
+jar {
+  manifest {
+    attributes 'Plugin-Class': "${pluginClass}",
+          'Plugin-Id': "${pluginId}",
+          'Plugin-Version': "${version}",
+          'Plugin-Provider': "${pluginProvider}",
+          'Plugin-Unsafe': "${pluginUnsafe}"
+  }
+}
+
+tasks {
+  test {
+    useJUnitPlatform()
+    afterTest { descriptor, result ->
+      // work around a bug in Gradle versions before 6.1, see https://github.com/junit-team/junit5/issues/2041
+      println "\n$descriptor.className [$descriptor.classDisplayName] > $descriptor.name [$descriptor.displayName]: $result.resultType"
+    }
+  }
+}
+
+task plugin(type: Jar) {
+  baseName = "${pluginId}"
+  into('classes') {
+    with jar
+  }
+  into('lib') {
+    from configurations.compile
+  }
+  extension('zip')
+}
+
+task assemblePlugin(type: Copy) {
+  from plugin
+  into rootProject.buildDir.path
+}
+
+build.dependsOn project.tasks.assemblePlugin
