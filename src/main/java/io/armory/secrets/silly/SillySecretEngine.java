@@ -15,7 +15,7 @@
  */
 package io.armory.secrets.silly;
 
-import com.netflix.spinnaker.kork.plugins.SpinnakerExtension;
+import com.netflix.spinnaker.kork.plugins.api.SpinnakerExtension;
 import com.netflix.spinnaker.kork.secrets.EncryptedSecret;
 import com.netflix.spinnaker.kork.secrets.InvalidSecretFormatException;
 import com.netflix.spinnaker.kork.secrets.SecretEngine;
