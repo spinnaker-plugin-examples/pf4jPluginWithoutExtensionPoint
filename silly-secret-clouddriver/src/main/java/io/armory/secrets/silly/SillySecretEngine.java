@@ -15,17 +15,22 @@
  */
 package io.armory.secrets.silly;
 
-import com.netflix.spinnaker.kork.plugins.api.SpinnakerExtension;
 import com.netflix.spinnaker.kork.secrets.EncryptedSecret;
 import com.netflix.spinnaker.kork.secrets.InvalidSecretFormatException;
 import com.netflix.spinnaker.kork.secrets.SecretEngine;
 import lombok.extern.slf4j.Slf4j;
+import org.pf4j.Extension;
 
 @Slf4j
-@SpinnakerExtension(id = "armory.sillySecrets")
-public class SillySecretEngine extends ConfiguredExtension<SillySecretConfig> implements SecretEngine {
+@Extension
+public class SillySecretEngine implements SecretEngine {
 
-    private String password;
+    private final String password;
+
+    SillySecretEngine(SillySecretConfig configuration) {
+        log.info("Configuring SillySecretEngine with: " + configuration.getPassword());
+        this.password = configuration.getPassword();
+    }
 
     public String identifier() {
         return "SillySecrets";
@@ -39,9 +44,4 @@ public class SillySecretEngine extends ConfiguredExtension<SillySecretConfig> im
 
     public void validate(EncryptedSecret encryptedSecret) throws InvalidSecretFormatException { }
 
-    @Override
-    public void setConfiguration(SillySecretConfig configuration) {
-        log.info("Configuring SillySecretEngine with: " + configuration.getPassword());
-        this.password = configuration.getPassword();
-    }
 }

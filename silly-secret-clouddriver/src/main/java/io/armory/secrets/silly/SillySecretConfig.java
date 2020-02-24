@@ -15,9 +15,11 @@
  */
 package io.armory.secrets.silly;
 
+import com.netflix.spinnaker.kork.plugins.api.ExtensionConfiguration;
 import lombok.Data;
 
 @Data
+@ExtensionConfiguration("armory.sillySecrets")
 public class SillySecretConfig {
 
     private String password;
