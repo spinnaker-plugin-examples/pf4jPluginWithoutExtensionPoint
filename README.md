@@ -27,7 +27,7 @@ Or use the [examplePluginRepository](https://github.com/spinnaker-plugin-example
 To debug the plugin inside a Spinnaker service (like Orca) using IntelliJ Idea follow these steps:
 
 1) Run `./gradlew releaseBundle` in the plugin project.
-2) Copy the generated `.plugin-ref` file under `build` from the plugin project to the `plugins` directory under root in the Spinnaker service that will use the plugin .
+2) Copy the generated `.plugin-ref` file under `build` in the plugin project submodule for the service to the `plugins` directory under root in the Spinnaker service that will use the plugin .
 3) Link the plugin project to the service project in IntelliJ (from the service project use the `+` button in the Gradle tab and select the plugin build.gradle).
 4) Configure the Spinnaker service the same way specified above.
 5) Create a new IntelliJ run configuration for the service that has the VM option `-Dpf4j.mode=development` and does a `Build Project` before launch.
