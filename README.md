@@ -1,3 +1,5 @@
+![CI](https://github.com/spinnaker-plugin-examples/pf4jPluginWithoutExtensionPoint/workflows/CI/badge.svg)
+
 Spinnaker Plugin (PF4J based) that uses a regular interface as an extension point.
 
 Note these things when extending a regular interface with Pf4J:
