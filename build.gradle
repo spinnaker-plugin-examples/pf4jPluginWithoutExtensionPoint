@@ -16,7 +16,7 @@ apply plugin: "io.spinnaker.plugin.bundler"
 
 spinnakerBundle {
   pluginId = "Armory.SillySecretsPlugin"
-  description = "An example of a plugin, that provides an extension to an interface that is not an extention point."
+  description = "An example of a plugin that provides an extension to an interface that is not an extention point."
   provider = "https://github.com/claymccoy"
   version = rootProject.version
 }
