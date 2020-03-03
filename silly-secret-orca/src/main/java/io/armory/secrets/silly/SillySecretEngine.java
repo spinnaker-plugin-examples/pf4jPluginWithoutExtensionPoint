@@ -27,7 +27,7 @@ public class SillySecretEngine implements SecretEngine {
 
     private final String password;
 
-    SillySecretEngine(SillySecretConfig configuration) {
+    public SillySecretEngine(SillySecretConfig configuration) {
         log.info("Configuring SillySecretEngine with: " + configuration.getPassword());
         this.password = configuration.getPassword();
     }
