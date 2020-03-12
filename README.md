@@ -1,4 +1,5 @@
 ![CI](https://github.com/spinnaker-plugin-examples/pf4jPluginWithoutExtensionPoint/workflows/CI/badge.svg)
+![Latest Kork](https://github.com/spinnaker-plugin-examples/pf4jPluginWithoutExtensionPoint/workflows/Latest%20Kork/badge.svg?branch=master)
 
 Spinnaker Plugin (PF4J based) that uses a regular interface as an extension point.
 
