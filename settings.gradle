@@ -8,7 +8,7 @@ pluginManagement {
 
 rootProject.name="pf4jPluginWithoutExtensionPoint"
 
-include "silly-secret-clouddriver", "silly-secret-orca"
+include "silly-secret-clouddriver", "silly-secret-orca", "silly-secret-common"
 
 def setBuildFile(project) {
   project.buildFileName = "${project.name}.gradle"
