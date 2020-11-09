@@ -15,13 +15,14 @@
  */
 package io.armory.secrets.silly;
 
+import com.netflix.spinnaker.kork.plugins.api.internal.SpinnakerExtensionPoint;
 import com.netflix.spinnaker.kork.secrets.SecretEngine;
 import lombok.extern.slf4j.Slf4j;
 import org.pf4j.Extension;
 
 @Slf4j
 @Extension
-public class SillySecretEngine extends AbstractSillySecretEngine implements SecretEngine {
+public class SillySecretEngine extends AbstractSillySecretEngine implements SecretEngine, SpinnakerExtensionPoint {
 
     public SillySecretEngine(SillySecretConfig configuration) {
         super(configuration.getPassword());
