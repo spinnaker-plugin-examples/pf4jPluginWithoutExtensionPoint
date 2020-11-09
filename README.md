@@ -4,8 +4,8 @@
 Spinnaker Plugin (PF4J based) that uses a regular interface as an extension point.
 
 Note these things when extending a regular interface with Pf4J:
-* currently your extension can only have one interface that is the implicit extension point
 * you need to provide this compiler argument `-Apf4j.ignoreExtensionPoint`
+* if you want to promote your implementation of the interface to the parent service application context, your class must also implement `SpinnakerExtensionPoint`.
 
 <h2>Usage</h2>
 
@@ -18,11 +18,8 @@ spinnaker:
     plugins:
       Armory.SillySecretsPlugin:
         enabled: true
-        extensions:
-          armory.sillySecrets:
-            enabled: true
-            config:
-              password: 'psswd'
+        config:
+          password: 'psswd'
 ```
 
 Or use the [examplePluginRepository](https://github.com/spinnaker-plugin-examples/examplePluginRepository) to avoid copying the plugin `.zip` artifact.
